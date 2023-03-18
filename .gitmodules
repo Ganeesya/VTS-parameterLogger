@@ -1,0 +1,6 @@
+[submodule "VTubeStudioAccess/websocket"]
+	path = VTubeStudioAccess/websocket
+	url = https://github.com/Ganeesya/VTS-Sharp.git
+[submodule "VTubeStudioAccess/sebsocket"]
+	path = VTubeStudioAccess/sebsocket
+	url = https://github.com/Ganeesya/VTS-Sharp.git
