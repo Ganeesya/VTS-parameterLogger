@@ -54,11 +54,19 @@ namespace VTubeStudioAccess
         private string currentLogFileName = "";
         private long tickCount = 0L;
         private float remainMsTime = 0f;
+        private bool isInquiring = false;
+        private bool isRecording = false;
 
         public void StockParameterFromVTS( string logBaseDirPath, float fps )
         {
+            isRecording = true;
+            if (isInquiring) return;
+
+            isInquiring = true;
             GetLive2DParameterList(data =>
             {
+                if (!isRecording) return;
+                
                 if (old?.data.modelID != data.data.modelID)
                 {
                     DebugPrint(old?.data.modelID + " != " + data.data.modelID);
@@ -66,8 +74,10 @@ namespace VTubeStudioAccess
                 }
 
                 SaveParam(currentLogFileName, 1000f / fps, data);
+                isInquiring = false;
             }, error =>
             {
+                isInquiring = false;
             });
         }
 
@@ -152,6 +162,7 @@ namespace VTubeStudioAccess
 
         public void ResetRecord()
         {
+            isRecording = false;
             old = null;
             currentLogFileName = "";
             tickCount = 0L;
@@ -171,19 +182,6 @@ namespace VTubeStudioAccess
                 return (T)formatter.Deserialize(stream);
             }
         }
-
-        // public int getParameterCount()
-        // {
-        //     DebugPrint("VTSAccess@ ParamCount");
-        //     if (stock == null) return -1;
-        //     return stock.data.parameters.Length;
-        // }
-        //
-        // public VTSParameter GetParameter(int index)
-        // {
-        //     DebugPrint("VTSAccess@ param");
-        //     return stock?.data.parameters[index];
-        // }
         
         private async Task SocketUpdate()
         {
