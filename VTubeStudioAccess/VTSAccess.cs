@@ -133,6 +133,7 @@ namespace VTubeStudioAccess
             while ( remainMsTime + tickStepTime <= diffTime )
             {
                 float t = remainMsTime / diffTime;
+                if (diffTime == 0L) t = 1f;
                 foreach (var i in Enumerable.Range(0,newData.data.parameters.Length))
                 {
                     float value = old.data.parameters[i].value * (1f-t) + newData.data.parameters[i].value * t; 
@@ -171,7 +172,7 @@ namespace VTubeStudioAccess
 
         private void DebugPrint(string str )
         {
-            Debug.Print(str);
+            //Debug.Print(str);
         }
         
         public static T DeepCopy<T>(T obj) {
