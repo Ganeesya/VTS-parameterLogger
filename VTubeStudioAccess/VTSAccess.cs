@@ -15,9 +15,23 @@ namespace VTubeStudioAccess
 {
     public class VTSAccess: VTSPlugin
     {
+        private static VTSAccess instance = null;
+        public static VTSAccess Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new VTSAccess();
+                }
+
+                return instance;
+            }
+        }
+
         private CancellationTokenSource cancelSource;
         
-        public VTSAccess()
+        private VTSAccess()
         {
             string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string settingsFolder = Path.Combine(appDataFolder, "VTSPlugins");
