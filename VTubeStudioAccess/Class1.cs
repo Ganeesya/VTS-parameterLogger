@@ -10,13 +10,13 @@ namespace VTubeStudioAccess
             string encordedPath = Encoding.UTF8.GetString( Encoding.GetEncoding("Shift_JIS").GetBytes(logBaseDirPath) );
             // Debug.Print("preEncode path:"+logBaseDirPath);
             // Debug.Print("encode path:"+encordedPath);
-            VTSAccess.Instance.StockParameterFromVTS(encordedPath,  fps);
+            VTSAccess.Instance?.StockParameterFromVTS(encordedPath,  fps);
         }
 
         [DllExport]
         static void StopRecord()
         {
-            VTSAccess.Instance.ResetRecord();
+            VTSAccess.Instance?.ResetRecord();
         }
     }
 }

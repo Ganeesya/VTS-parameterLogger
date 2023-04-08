@@ -20,9 +20,17 @@ namespace VTubeStudioAccess
         {
             get
             {
-                if (instance == null)
+                try
                 {
-                    instance = new VTSAccess();
+                    if (instance == null)
+                    {
+                        instance = new VTSAccess();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return null;
                 }
 
                 return instance;
