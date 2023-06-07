@@ -190,6 +190,8 @@ namespace VTubeStudioAccess
             currentLogFileName = "";
             tickCount = 0L;
             remainMsTime = 0f;
+            isInquiring = false;
+            DebugPrint("Reset!!!");
         }
 
         private void DebugPrint(string str )
