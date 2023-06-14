@@ -12,9 +12,9 @@ copy "..\saveParam.lua" "obs-studio\data\obs-plugins\frontend-tools\scripts\save
 
 rem ���t���擾
 for /f "tokens=1-3 delims=/ " %%a in ("%date%") do (
-    set year=%%c
-    set month=%%a
-    set day=%%b
+    set year=%%a
+    set month=%%b
+    set day=%%c
 )
 
 rem ���Ԃ��擾
@@ -27,6 +27,6 @@ for /f "tokens=1-3 delims=:." %%a in ("%time%") do (
 rem ���t�Ǝ��Ԃ��������ăt�@�C�������쐬
 set filename=VTSAccess_%year%%month%%day%_%hour%%minute%%second%.zip
 
-ECHO | "C:\Program Files\7-Zip\7z.exe" a -tzip %filename% "obs-studio\"
+ECHO | "C:\Program Files\7-Zip\7z.exe" a -tzip "%filename%" "obs-studio\"
 
 pause
